@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { CheckCircle2, Circle, Clock, Phone } from 'lucide-react';
+import { formatCurrency } from '../utils/currency';
 
 export default function ClienteTracking() {
   const { pedidos } = useContext(AppContext);
@@ -89,13 +90,13 @@ export default function ClienteTracking() {
               {currentOrder.items.map((item, idx) => (
                 <div key={idx} className="flex justify-between text-xs text-slate-600">
                   <span><strong className="text-slate-800">{item.quantity}x</strong> {item.name}</span>
-                  <span className="font-semibold text-slate-800">${(item.unit_price * item.quantity).toFixed(2)}</span>
+                  <span className="font-semibold text-slate-800">{formatCurrency(item.unit_price * item.quantity)}</span>
                 </div>
               ))}
             </div>
             <div className="pt-2 border-t border-slate-100 flex justify-between text-sm font-bold text-slate-900">
               <span>Total (IVA incl.)</span>
-              <span className="text-brand text-base">${currentOrder.total.toFixed(2)}</span>
+              <span className="text-brand text-base">{formatCurrency(currentOrder.total)}</span>
             </div>
           </div>
         </div>

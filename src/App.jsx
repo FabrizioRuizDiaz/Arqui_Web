@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AppProvider, AppContext } from './context/AppContext';
+import { CartProvider } from './context/CartContext';
 import ClienteNuevoPedido from './views/ClienteNuevoPedido';
 import ClienteTracking from './views/ClienteTracking';
 import AdminDashboard from './views/AdminDashboard';
@@ -48,7 +49,9 @@ function NavigationWrapper() {
 export default function App() {
   return (
     <AppProvider>
-      <NavigationWrapper />
+      <CartProvider>
+        <NavigationWrapper />
+      </CartProvider>
     </AppProvider>
   );
 }
