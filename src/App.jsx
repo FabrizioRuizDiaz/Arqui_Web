@@ -12,7 +12,6 @@ function NavigationWrapper() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navbar de Control MVP */}
       <header className="bg-slate-900 text-white shadow-md">
         <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
@@ -35,7 +34,7 @@ function NavigationWrapper() {
         </div>
       </header>
 
-      {/* Renderizado de Vistas Dinámicas */}
+      
       <main className="flex-1 bg-slate-50 py-6">
         {activeView === 'cliente-nuevo' && <ClienteNuevoPedido />}
         {activeView === 'cliente-tracking' && <ClienteTracking />}

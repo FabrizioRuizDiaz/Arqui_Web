@@ -135,7 +135,6 @@ function MapModal({ onClose, onConfirm, initialDireccion }) {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl flex flex-col overflow-hidden"
            style={{ maxHeight: '90vh' }}>
 
-        {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
           <div className="flex items-center gap-2">
             <MapPin className="text-brand" size={20} />
@@ -147,7 +146,6 @@ function MapModal({ onClose, onConfirm, initialDireccion }) {
           </button>
         </div>
 
-        {/* Buscador */}
         <div className="px-5 py-3 border-b border-slate-100">
           <div className="relative">
             <Navigation size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -160,7 +158,6 @@ function MapModal({ onClose, onConfirm, initialDireccion }) {
           </div>
         </div>
 
-        {/* Mapa */}
         <div className="relative flex-1" style={{ minHeight: '360px' }}>
           {loading && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 z-10">
@@ -267,7 +264,6 @@ export default function ClienteNuevoPedido() {
             </div>
           </div>
 
-          {/* Panel del Carrito */}
           <CartSummary
             direccion={direccion}
             setDireccion={setDireccion}

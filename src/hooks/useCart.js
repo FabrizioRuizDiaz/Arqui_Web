@@ -33,7 +33,6 @@ export function useCart() {
     setCart(prev => prev.filter(item => item.id !== productId));
   };
 
-  // delta = +1 o -1; si la cantidad llega a 0, elimina el item
   const updateQuantity = (productId, delta) => {
     setCart(prev => {
       const updated = prev.map(item =>

@@ -7,7 +7,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto p-4 space-y-6">
-      {/* Encabezado e Indicadores Metrizaodos */}
       <div>
         <h1 className="text-2xl font-black text-slate-900">Monitoreo de Operaciones</h1>
         <p className="text-slate-500 text-sm">Vista en tiempo real de la red logística y cocina central.</p>
@@ -35,7 +34,6 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Tabla Estructural de Pedidos */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
           <h2 className="font-bold text-slate-800 flex items-center gap-2"><Layers size={18} /> Cola de Pedidos Globales</h2>

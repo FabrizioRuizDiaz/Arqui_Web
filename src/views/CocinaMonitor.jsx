@@ -5,7 +5,6 @@ import { ChefHat, Check, AlertCircle } from 'lucide-react';
 export default function CocinaMonitor() {
   const { pedidos, updateOrderStatus } = useContext(AppContext);
   
-  // Filtramos pedidos en preparación o pendientes asignados a la cocina ID: 1
   const pedidosCocina = pedidos.filter(p => p.status === 'preparando' || p.status === 'pendiente');
 
   return (
@@ -37,7 +36,6 @@ export default function CocinaMonitor() {
                 <span className="text-sm font-bold text-slate-700 bg-slate-200 px-2.5 py-1 rounded-lg capitalize">{order.status}</span>
               </div>
 
-              {/* Items Detail */}
               <div className="p-4 flex-1 space-y-4">
                 <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">DETALLE DEL PEDIDO</p>
@@ -64,7 +62,6 @@ export default function CocinaMonitor() {
                 </div>
               </div>
 
-              {/* Acciones Rápidas */}
               <div className="p-4 bg-slate-50 border-t border-slate-100 flex gap-2">
                 {order.status === 'pendiente' ? (
                   <button onClick={() => updateOrderStatus(order.id, 'preparando')} className="w-full bg-brand text-white py-2.5 rounded-xl font-bold text-sm hover:bg-brand-dark transition">

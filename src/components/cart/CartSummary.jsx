@@ -53,7 +53,6 @@ export default function CartSummary({ direccion, setDireccion, notas, setNotas, 
             className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-brand"
           />
 
-          {/* Botón para abrir el mapa */}
           <button
             onClick={onOpenMap}
             className="w-full mt-2 py-2 px-3 border border-brand text-brand rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-brand hover:text-white transition"
@@ -62,7 +61,6 @@ export default function CartSummary({ direccion, setDireccion, notas, setNotas, 
             {coords ? 'Cambiar ubicación en mapa' : 'Seleccionar ubicación en mapa'}
           </button>
 
-          {/* Coordenadas confirmadas */}
           {coords && (
             <p className="text-[10px] text-slate-400 mt-1 text-center">
               📍 {coords.lat.toFixed(5)}, {coords.lng.toFixed(5)}
