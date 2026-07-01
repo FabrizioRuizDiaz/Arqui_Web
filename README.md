@@ -1,21 +1,52 @@
-<<<<<<< HEAD
-# React + Vite
+# OrderFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de delivery de pedidos. Monorepo con el **backend** (API REST) y el
+**frontend** (SPA) en un único repositorio.
 
-Currently, two official plugins are available:
+```
+PEDIDOS/
+├── backend/     API REST — Node.js + Express + MySQL   (puerto 3001)
+├── frontend/    SPA — React + Vite + Tailwind           (puerto 5173)
+└── README.md    (este archivo)
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Arquitectura
 
-## React Compiler
+El frontend consume la API del backend vía HTTP. La URL del backend se
+configura en `frontend/.env` mediante `VITE_API_URL` (por defecto
+`http://localhost:3001/api`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+Navegador ─► frontend (Vite :5173) ─► backend (Express :3001) ─► MySQL
+```
 
-## Expanding the ESLint configuration
+## Puesta en marcha (desarrollo)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Arqui_Web
-Trabajo practico para Arquitectura Web
->>>>>>> 7976fe3bcf0ddedda4d35544466d7de0454f353e
+Requisitos: **Node.js 18+** y **MySQL 8.x** (por ejemplo vía XAMPP).
+
+### 1. Backend
+
+```bash
+cd backend
+npm install
+cp .env.example .env        # ajustar credenciales de MySQL si hace falta
+mysql -u root < database/schema.sql   # crea la BD y datos de ejemplo
+npm run dev                 # http://localhost:3001
+```
+
+### 2. Frontend
+
+```bash
+cd frontend
+npm install
+cp .env.example .env        # cargar tu VITE_GOOGLE_MAPS_API_KEY
+npm run dev                 # http://localhost:5173
+```
+
+Con ambos corriendo, abrí `http://localhost:5173` en el navegador.
+
+## Documentación detallada
+
+- **Backend** (endpoints, arquitectura, testing): [`backend/README.md`](backend/README.md) y [`backend/TESTING.md`](backend/TESTING.md)
+- **Frontend**: [`frontend/README.md`](frontend/README.md)
+- **Guía completa del proyecto**: [`README_COMPLETO.txt`](README_COMPLETO.txt)
