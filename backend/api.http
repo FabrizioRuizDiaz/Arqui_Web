@@ -1,0 +1,82 @@
+@base = http://localhost:3001/api
+
+### Health check
+GET {{base}}/health
+
+###
+
+# ── Restaurantes ────────────────────────────────────────────────────────────
+
+### Listar todos los restaurantes
+GET {{base}}/restaurantes
+
+### Obtener restaurante por ID
+GET {{base}}/restaurantes/1
+
+###
+
+# ── Productos ───────────────────────────────────────────────────────────────
+
+### Listar todos los productos disponibles
+GET {{base}}/productos
+
+### Filtrar productos por restaurante
+GET {{base}}/productos?restaurant_id=1
+
+### Obtener producto por ID
+GET {{base}}/productos/1
+
+###
+
+# ── Pedidos ─────────────────────────────────────────────────────────────────
+
+### Listar todos los pedidos (con sus items)
+GET {{base}}/pedidos
+
+### Obtener pedido por ID
+GET {{base}}/pedidos/1
+
+### Crear un pedido
+POST {{base}}/pedidos
+Content-Type: application/json
+
+{
+  "client": "Juan Pérez",
+  "restaurant_id": 1,
+  "address": "Av. Corrientes 1234, CABA",
+  "notes": "Sin cebolla",
+  "items": [
+    { "product_id": 1, "name": "Classic Burger", "quantity": 2, "unit_price": 35000 },
+    { "product_id": 3, "name": "Papas Fritas",   "quantity": 1, "unit_price": 12000 }
+  ]
+}
+
+### Confirmar pedido  (pendiente → confirmado)
+PATCH {{base}}/pedidos/1/status
+Content-Type: application/json
+
+{ "status": "confirmado" }
+
+### Marcar en preparación  (confirmado → preparando)
+PATCH {{base}}/pedidos/1/status
+Content-Type: application/json
+
+{ "status": "preparando" }
+
+### Marcar en camino  (preparando → en_camino)
+PATCH {{base}}/pedidos/1/status
+Content-Type: application/json
+
+{ "status": "en_camino" }
+
+### Marcar entregado  (en_camino → entregado)
+PATCH {{base}}/pedidos/1/status
+Content-Type: application/json
+
+{ "status": "entregado" }
+
+### Cancelar pedido
+PATCH {{base}}/pedidos/1/status
+Content-Type: application/json
+
+{ "status": "cancelado" }
