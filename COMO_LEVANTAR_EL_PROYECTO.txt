@@ -90,30 +90,3 @@ corriendo en tu maquina.
 
 7. Abrir en el navegador la URL que muestra la terminal
    (por defecto http://localhost:5173)
-
---------------------------------------------------------
-4) ORDEN DE ARRANQUE RESUMIDO
---------------------------------------------------------
-1. MySQL corriendo
-2. Terminal 1: cd backend  -> npm run dev
-3. Terminal 2: cd frontend -> npm run dev
-4. Abrir http://localhost:5173 en el navegador
-
-Si el frontend muestra un error de conexion, revisar que el
-backend este corriendo en el puerto 3001 (http://localhost:3001/api/health).
-
---------------------------------------------------------
-5) PROBLEMAS COMUNES
---------------------------------------------------------
-- "Error de conexion a la base de datos":
-  Revisar usuario/password/puerto en backend/.env, y que MySQL
-  este efectivamente corriendo.
-
-- "No se puede conectar con el backend" (desde el frontend):
-  Verificar que el backend este corriendo y que VITE_API_URL en
-  frontend/.env apunte a http://localhost:3001/api
-
-- Puertos ocupados:
-  Cambiar PORT en backend/.env, o el puerto de Vite con
-  "npm run dev -- --port 5174" en el frontend (y actualizar
-  VITE_API_URL / CORS si corresponde).
