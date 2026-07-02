@@ -1,0 +1,119 @@
+========================================================
+ OrderFlow - Como levantar el proyecto completo
+========================================================
+
+Este proyecto es un monorepo con dos partes independientes:
+  - backend/   -> API REST en Node.js + Express + MySQL (puerto 3001)
+  - frontend/  -> App en React + Vite (puerto 5173)
+
+Se necesitan 2 terminales abiertas al mismo tiempo (una para el
+backend y otra para el frontend), ademas de un servidor MySQL
+corriendo en tu maquina.
+
+--------------------------------------------------------
+0) REQUISITOS PREVIOS
+--------------------------------------------------------
+- Node.js instalado (v18 o superior recomendado)
+- MySQL corriendo en localhost (puede ser XAMPP, MySQL Server, etc.)
+- Puerto 3306 (MySQL), 3001 (backend) y 5173 (frontend) libres
+
+--------------------------------------------------------
+1) BASE DE DATOS (una sola vez)
+--------------------------------------------------------
+1. Arrancar el servidor MySQL (por ejemplo, desde el panel de XAMPP).
+2. Ejecutar el script de esquema para crear la base de datos y
+   las tablas con datos de ejemplo:
+
+   Opcion A - desde la terminal:
+       mysql -u root -p < backend/database/schema.sql
+
+   Opcion B - desde phpMyAdmin / MySQL Workbench:
+       Abrir el archivo backend/database/schema.sql
+       y ejecutarlo completo.
+
+   Esto crea la base de datos "orderflow" con las tablas:
+   restaurantes, productos, pedidos, pedido_items (con datos
+   de prueba ya cargados).
+
+--------------------------------------------------------
+2) BACKEND (API)
+--------------------------------------------------------
+1. Entrar a la carpeta del backend:
+       cd backend
+
+2. Instalar dependencias:
+       npm install
+
+3. Crear el archivo de variables de entorno copiando el ejemplo:
+       copy .env.example .env        (Windows / PowerShell)
+       cp .env.example .env          (Git Bash / Linux / Mac)
+
+4. Editar el archivo .env con los datos de tu MySQL local:
+       PORT=3001
+       DB_HOST=localhost
+       DB_PORT=3306
+       DB_USER=root
+       DB_PASSWORD=tu_password_aqui   <- poner tu password real
+       DB_NAME=orderflow
+
+5. Levantar el servidor:
+       npm run dev        (con auto-reload, recomendado para desarrollo)
+       npm start          (modo normal, sin auto-reload)
+
+6. Verificar que funciona entrando a:
+       http://localhost:3001/api/health
+
+   Deberia responder con un JSON de estado OK.
+
+--------------------------------------------------------
+3) FRONTEND (React + Vite)
+--------------------------------------------------------
+1. Abrir OTRA terminal (dejar el backend corriendo en la anterior).
+
+2. Entrar a la carpeta del frontend:
+       cd frontend
+
+3. Instalar dependencias:
+       npm install
+
+4. Crear el archivo de variables de entorno copiando el ejemplo:
+       copy .env.example .env        (Windows / PowerShell)
+       cp .env.example .env          (Git Bash / Linux / Mac)
+
+5. Editar el archivo .env si es necesario:
+       VITE_API_URL=http://localhost:3001/api
+
+   (Ya viene con el valor correcto por defecto.)
+
+6. Levantar el servidor de desarrollo:
+       npm run dev
+
+7. Abrir en el navegador la URL que muestra la terminal
+   (por defecto http://localhost:5173)
+
+--------------------------------------------------------
+4) ORDEN DE ARRANQUE RESUMIDO
+--------------------------------------------------------
+1. MySQL corriendo
+2. Terminal 1: cd backend  -> npm run dev
+3. Terminal 2: cd frontend -> npm run dev
+4. Abrir http://localhost:5173 en el navegador
+
+Si el frontend muestra un error de conexion, revisar que el
+backend este corriendo en el puerto 3001 (http://localhost:3001/api/health).
+
+--------------------------------------------------------
+5) PROBLEMAS COMUNES
+--------------------------------------------------------
+- "Error de conexion a la base de datos":
+  Revisar usuario/password/puerto en backend/.env, y que MySQL
+  este efectivamente corriendo.
+
+- "No se puede conectar con el backend" (desde el frontend):
+  Verificar que el backend este corriendo y que VITE_API_URL en
+  frontend/.env apunte a http://localhost:3001/api
+
+- Puertos ocupados:
+  Cambiar PORT en backend/.env, o el puerto de Vite con
+  "npm run dev -- --port 5174" en el frontend (y actualizar
+  VITE_API_URL / CORS si corresponde).

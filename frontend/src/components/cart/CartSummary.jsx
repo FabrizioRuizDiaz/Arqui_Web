@@ -5,7 +5,7 @@ import { useCartContext } from '../../context/CartContext';
 import { DELIVERY_FEE } from '../../constants/order';
 import { formatCurrency } from '../../utils/currency';
 
-export default function CartSummary({ direccion, setDireccion, notas, setNotas, coords, onOpenMap, onConfirm }) {
+export default function CartSummary({ direccion, setDireccion, notas, setNotas, onConfirm }) {
   const { cart, subtotal } = useCartContext();
   const total = subtotal + DELIVERY_FEE;
 
@@ -52,20 +52,6 @@ export default function CartSummary({ direccion, setDireccion, notas, setNotas, 
             onChange={(e) => setDireccion(e.target.value)}
             className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-brand"
           />
-
-          <button
-            onClick={onOpenMap}
-            className="w-full mt-2 py-2 px-3 border border-brand text-brand rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-brand hover:text-white transition"
-          >
-            <MapPin size={14} />
-            {coords ? 'Cambiar ubicación en mapa' : 'Seleccionar ubicación en mapa'}
-          </button>
-
-          {coords && (
-            <p className="text-[10px] text-slate-400 mt-1 text-center">
-              📍 {coords.lat.toFixed(5)}, {coords.lng.toFixed(5)}
-            </p>
-          )}
         </div>
 
         <div>
